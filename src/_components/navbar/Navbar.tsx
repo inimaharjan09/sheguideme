@@ -19,7 +19,7 @@ export default function Navbar() {
         <input
           type="text"
           placeholder="Search"
-          className="flex-grow px-4 py-2 text-[20px] outline-none rounded-l-full"
+          className="flex-1 px-4 py-2 text-[20px] outline-none rounded-l-full"
         />
         <button className="bg-[#D8465C] border-[#F3F3F3] rounded-3xl text-white px-4 py-2 text-[14px] hover:bg-rose-600">
           Search
@@ -33,11 +33,11 @@ export default function Navbar() {
           {language}
         </button>
 
-        <button className="bg-[#D8465C] text-white px-4 py-2 rounded text-[20px] hover:cursor-pointer">
+        <button className="bg-[#D8465C] text-white px-4 py-1.5 rounded text-[20px] hover:cursor-pointer">
           Create New Account
         </button>
 
-        <button className="border border-[#D8465C] text-[#D8465C] px-4 py-2 rounded text-[20px] hover:bg-rose-50 hover:cursor-pointer">
+        <button className="border border-[#D8465C] text-[#D8465C] px-4 py-1.5 rounded text-[20px] hover:bg-rose-50 hover:cursor-pointer">
           Login
         </button>
       </div>
