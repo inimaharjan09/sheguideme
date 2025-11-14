@@ -42,7 +42,7 @@ const card1 = [
 const Hero = () => {
   return (
     <>
-      <main className="relative bg-[#F3F3F3]">
+      <main className="relative bg-[#F3F3F3] ">
         <section className="relative w-full h-[150vh]">
           {/* Background image */}
           <Image
@@ -67,34 +67,36 @@ const Hero = () => {
 
             {/* Register Form */}
             <div className="opacity-90 bg-[#1A1A1AB2] rounded-2xl shadow-xl p-6 mt-8 md:mt-0 md:w-[400px] w-full">
-              <h3 className="text-[16px] font-semibold text-white mb-4">
-                Create profile for
+              <h3 className="hidden md:block text-[20px] font-semibold text-white mb-6">
+                Create your profile
               </h3>
               <form className="flex flex-col gap-4">
-                <select className="border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none">
+                <select className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none">
                   <option value="">Select</option>
                   <option value="one">One</option>
                   <option value="two">Two</option>
                 </select>
 
-                <label className="text-white">Full Name</label>
+                <label className="hidden md:block text-white">Full Name</label>
                 <input
                   type="text"
                   placeholder="e.g. Sanjana Sharma"
-                  className="border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
+                  className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
                 />
 
-                <label className="text-white">Email</label>
+                <label className="hidden md:block text-white">Email</label>
                 <input
                   type="email"
                   placeholder="Email or Phone Number"
-                  className="border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
+                  className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
                 />
 
-                <label className="text-white">Create Password</label>
+                <label className="hidden md:block text-white">
+                  Create Password
+                </label>
                 <input
                   type="password"
-                  className="border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
+                  className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
                 />
 
                 <button
@@ -105,7 +107,7 @@ const Hero = () => {
                 </button>
               </form>
 
-              <p className="text-sm text-gray-200 mt-4">
+              <p className="hidden md:block text-sm text-gray-200 mt-4">
                 By clicking 'Register for Free', you accept the{' '}
                 <span className="text-[#D8465C]">Terms of Use</span> and{' '}
                 <span className="text-[#D8465C]">Privacy Policy</span>.
@@ -119,16 +121,16 @@ const Hero = () => {
           <div className="min-h-screen relative -top-36 max-w-6xl shadow-lg bg-white rounded-lg ">
             <div className="relative  ">
               {/* Trusted Section */}
-              <section className="py-16 px-6">
-                <p className="text-[#929292] text-[28px] text-center font-semibold font-roboto">
+              <section className="py-16 px-6 md:px-20">
+                <p className="text-[#929292] text-lg md:text-[28px] text-center font-semibold font-roboto">
                   Trusted by Travelers Worldwide
                 </p>
-                <h2 className="text-[40px] text-center font-semibold mb-8 mt-2">
+                <h2 className="text-lg md:text-[40px] text-center font-semibold mb-8 mt-2">
                   Simplifying{' '}
                   <strong className="text-[#D8465C]">Every Journey.</strong>
                 </h2>
 
-                <div className="grid grid-cols-3 gap-3">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                   {cards.map((card, index) => (
                     <div key={index} className="p-6">
                       {card.icon && (
@@ -158,10 +160,10 @@ const Hero = () => {
               <section className="px-10 py-3">
                 <div className="grid grid-cols-3">
                   <div>
-                    <p className="text-[28px] font-semibold text-[#929292]">
+                    <p className="text-lg md:text-[28px] font-semibold text-[#929292]">
                       PLAN FROM HOME
                     </p>
-                    <span className="text-[40px] font-semibold font-roboto">
+                    <span className="text-lg md:text-[40px] font-semibold font-roboto">
                       Connect with{' '}
                       <strong className="text-[#D8465C] ">
                         Service Provider & Travel Guide
@@ -176,14 +178,14 @@ const Hero = () => {
                   <div>
                     {card1.map((item, index) => (
                       <div key={index} className="p-6">
-                        <h4 className="text-[28px] font-semibold mb-2">
+                        <h4 className="text-lg md:text-[28px] font-semibold mb-2">
                           {item.title}
                         </h4>
                         <hr
                           width="80"
                           className="border-[#D8465C] border-3xl "
                         />
-                        <p className="text-[16px] text-[#929292]">
+                        <p className="text-lg md:text-[16px] text-[#929292]">
                           {item.parag}
                         </p>
                       </div>

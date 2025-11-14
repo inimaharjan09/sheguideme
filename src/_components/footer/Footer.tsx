@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div>
       <footer className="py-10 text-sm">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-10">
           {/* Brand */}
           <div>
             <h3 className="text-[#D8465C] text-xl mb-4 font-kalnia">
@@ -69,6 +69,16 @@ const Footer = () => {
               <li>Blog</li>
               <li>Webinars</li>
               <li>Case Studies</li>
+            </ul>
+          </div>
+
+          {/*  */}
+          <div>
+            <h4 className="font-semibold mb-2">Support</h4>
+            <ul className="space-y-1 text-gray-600">
+              <li>Help Center</li>
+              <li>Community</li>
+              <li>Privacy Policy</li>
             </ul>
           </div>
         </div>

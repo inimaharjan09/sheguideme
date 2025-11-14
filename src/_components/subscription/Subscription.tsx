@@ -11,15 +11,15 @@ const billing = [
 ];
 const Subscription = () => {
   return (
-    <section className="py-16">
+    <section className="py-16 px-6 md:px-20">
       <div className="max-w-2xl mx-auto text-center space-y-4">
         <span className="text-sm font-medium px-3 py-1 border rounded-full">
           Frequently Asked Questions
         </span>
-        <h2 className="text-3xl font-bold text-gray-900 mt-3">
+        <h2 className="text-lg md:text-3xl font-bold text-gray-900 mt-3">
           Subscription & Billing FAQs
         </h2>
-        <p className="text-[20.32px] text-[#62748E]">
+        <p className="text-lg md:text-[20.32px] text-[#62748E]">
           All your questions about subscriptions, payments, and billing cycles
           answered here.
         </p>
