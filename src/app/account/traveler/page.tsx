@@ -13,7 +13,7 @@ type TravelerPopupProps = {
 export default function TravelerPopup({ isOpen, onClose }: TravelerPopupProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  if (!isOpen) return null; // Do not render if not open
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">

@@ -1,4 +1,6 @@
-import { ArrowDown, ArrowRight, ChevronDown } from 'lucide-react';
+'use client';
+
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import React from 'react';
 
 const billing = [
