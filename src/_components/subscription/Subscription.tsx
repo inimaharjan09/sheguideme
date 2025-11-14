@@ -1,3 +1,4 @@
+import { ArrowDown, ArrowRight, ChevronDown } from 'lucide-react';
 import React from 'react';
 
 const billing = [
@@ -27,10 +28,10 @@ const Subscription = () => {
       {/* FAQ Items */}
       <div className="mt-12 max-w-2xl mx-auto space-y-4">
         {billing.map((question, index) => (
-          <div key={index} className="border-b py-3">
+          <div key={index} className="border-b py-3 border-[#E2E8F0]">
             <div className="cursor-pointer font-medium flex justify-between items-center">
               {question.title}
-              <span className="ml-2">▾</span>
+              <ChevronDown size={20} />
             </div>
           </div>
         ))}
@@ -38,8 +39,8 @@ const Subscription = () => {
 
       {/* Button */}
       <div className="mt-8 text-center">
-        <button className="bg-[#D8465C] text-white px-6 py-3 rounded-lg hover:bg-rose-600 transition">
-          View all FAQs &rarr;
+        <button className="bg-[#D8465C] inline-flex justify-center items-center gap-2 text-white px-6 py-3 rounded-lg hover:cursor-pointer transition">
+          View all FAQs <ArrowRight size={20} />
         </button>
       </div>
     </section>

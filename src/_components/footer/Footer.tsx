@@ -4,11 +4,11 @@ import React from 'react';
 const Footer = () => {
   return (
     <div>
-      <footer className="border-t border-gray-200 py-10 text-sm">
+      <footer className="py-10 text-sm">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <h3 className="text-[#D93A5E] font-semibold text-xl mb-4">
+            <h3 className="text-[#D8465C] text-xl mb-4 font-kalnia">
               sheguideme
             </h3>
             <div className="flex gap-3 mb-4">
@@ -39,7 +39,7 @@ const Footer = () => {
               <li>Home</li>
               <li>
                 Advance Search{' '}
-                <span className="ml-1 text-xs text-rose-500 font-semibold">
+                <span className="ml-1 text-xs text-[#D8465C] font-semibold">
                   New
                 </span>
               </li>
@@ -54,7 +54,7 @@ const Footer = () => {
               <li>About Us</li>
               <li>
                 Careers{' '}
-                <span className="ml-1 text-xs text-rose-500 font-semibold">
+                <span className="ml-1 text-xs text-[#D8465C] font-semibold">
                   Hiring
                 </span>
               </li>

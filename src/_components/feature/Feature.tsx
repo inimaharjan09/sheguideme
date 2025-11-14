@@ -29,14 +29,9 @@ const Feature = () => {
           {features.map((feature, index) => (
             <div
               key={index}
-              className="flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 shadow-sm hover:shadow-md transition"
+              className="flex items-center gap-2 border border-gray-200 rounded-full px-4 py-2 transition"
             >
-              <Image
-                src="/trickcircle.svg"
-                alt="tick"
-                width={20.5}
-                height={20.5}
-              />
+              <Image src="/trickcircle.svg" alt="tick" width={25} height={25} />
               <span className="text-sm font-medium">{feature}</span>
             </div>
           ))}

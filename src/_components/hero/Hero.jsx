@@ -42,7 +42,7 @@ const card1 = [
 const Hero = () => {
   return (
     <>
-      <main className="relative ">
+      <main className="relative bg-[#F3F3F3]">
         <section className="relative w-full h-[150vh]">
           {/* Background image */}
           <Image
