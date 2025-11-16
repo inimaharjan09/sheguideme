@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 
 const cards = [
   {
@@ -42,6 +42,17 @@ const card1 = [
 ];
 
 const Hero = () => {
+  const [form, setForm] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Register Form:', form);
+  };
+
   return (
     <>
       <main className="relative bg-[#F3F3F3] ">
@@ -70,9 +81,10 @@ const Hero = () => {
             {/* Register Form */}
             <div className="opacity-90 bg-[#1A1A1AB2] rounded-2xl shadow-xl p-6 mt-8 md:mt-0 md:w-[400px] w-full">
               <h3 className="hidden md:block text-[20px] font-semibold text-white mb-6">
-                Create your profile
+                Create profile for
               </h3>
-              <form className="flex flex-col gap-4">
+
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <select className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none">
                   <option value="">Select</option>
                   <option value="one">One</option>
@@ -81,15 +93,23 @@ const Hero = () => {
 
                 <label className="hidden md:block text-white">Full Name</label>
                 <input
+                  value={form.fullName}
+                  onChange={(e) =>
+                    setForm({ ...form, fullName: e.target.value })
+                  }
                   type="text"
                   placeholder="e.g. Sanjana Sharma"
+                  required
                   className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
                 />
 
                 <label className="hidden md:block text-white">Email</label>
                 <input
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
                   type="email"
                   placeholder="Email or Phone Number"
+                  required
                   className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
                 />
 
@@ -97,7 +117,13 @@ const Hero = () => {
                   Create Password
                 </label>
                 <input
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.target.value })
+                  }
+                  value={form.password}
                   type="password"
+                  required
+                  placeholder="************"
                   className="hidden md:block border border-gray-300 rounded-lg bg-white px-4 py-2 focus:outline-none"
                 />
 
@@ -145,7 +171,8 @@ const Hero = () => {
                           />
                         </div>
                       )}
-                      {/* lets make it span or div */}
+
+                      {/*  */}
                       <div className="border-[#D8465C] border-[2.5px] w-1/4 " />
                       <h3 className="text-[28px] font-semibold">
                         {card.title}
@@ -183,10 +210,7 @@ const Hero = () => {
                         <h4 className="text-lg md:text-[28px] font-semibold mb-2">
                           {item.title}
                         </h4>
-                        <hr
-                          width="80"
-                          className="border-[#D8465C] border-3xl "
-                        />
+                        <hr className="border-[#D8465C] border-3xl w-[80]" />
                         <p className="text-lg md:text-[16px] text-[#929292]">
                           {item.parag}
                         </p>
