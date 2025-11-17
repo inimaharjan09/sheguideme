@@ -89,6 +89,21 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
             Create your account to discover trusted local guides and explore the
             world your way.
           </p>
+          <div className="flex justify-center gap-10 mb-10">
+            {[1, 2, 3, 4].map((num) => (
+              <div
+                key={num}
+                className={`w-8 h-8 flex items-center justify-center rounded-full border 
+            ${
+              num === 1
+                ? 'bg-[#D8465C] text-white border-[#D8465C]'
+                : 'border-gray-300 text-gray-500'
+            }`}
+              >
+                {num}
+              </div>
+            ))}
+          </div>
 
           <p className="mb-8 text-sm font-semibold">Basic Information</p>
 

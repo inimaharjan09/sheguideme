@@ -34,6 +34,22 @@ export default function TravelTwoPage({
             world your way.
           </p>
 
+          <div className="flex justify-center gap-10 mb-10">
+            {[1, 2, 3, 4].map((num) => (
+              <div
+                key={num}
+                className={`w-8 h-8 flex items-center justify-center rounded-full border 
+            ${
+              num === 2
+                ? 'bg-[#D8465C] text-white border-[#D8465C]'
+                : 'border-gray-300 text-gray-500'
+            }`}
+              >
+                {num}
+              </div>
+            ))}
+          </div>
+
           <p className="mb-8 text-sm font-semibold">Detail Information</p>
 
           {/* form */}
