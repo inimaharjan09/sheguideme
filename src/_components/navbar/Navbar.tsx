@@ -4,7 +4,7 @@ import { Globe, Menu, Search } from 'lucide-react';
 import NewAccount from './newAccount';
 import TravelAccount from './travelAccount';
 import LoginPage from './loginPage';
-import TravelTwoPage from '../../app/travel2/travel2';
+import TravelTwoPage from './travel2';
 
 export default function Navbar() {
   const [language, setLanguage] = useState('Language');

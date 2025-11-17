@@ -10,8 +10,6 @@ export default function TravelTwoPage({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const [profilePhotos, setProfilePhotos] = useState<File[]>([]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Submitted!');
