@@ -6,7 +6,7 @@ import { signToken } from '@/src/lib/jwt';
 
 export async function POST(req: Request) {
   try {
-    const { fullName, email, password, accountType } = await req.json();
+    const { fullName, email, password } = await req.json();
 
     await connectDB();
 
@@ -24,7 +24,6 @@ export async function POST(req: Request) {
       fullName,
       email,
       password: hashedPassword,
-      accountType,
     });
 
     const token = signToken({ id: newUser._id, email: newUser.email });
