@@ -4,6 +4,7 @@ import { Globe, Menu, Search } from 'lucide-react';
 import NewAccount from './newAccount';
 import TravelAccount from './travelAccount';
 import LoginPage from './loginPage';
+import TravelTwoPage from '../../app/travel2/travel2';
 
 export default function Navbar() {
   const [language, setLanguage] = useState('Language');
@@ -11,6 +12,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showNewAccount, setShowNewAccount] = useState(false);
   const [showTravelAccount, setShowTravelAccount] = useState(false);
+  const [showTravelTwoPage, setShowTravelTwoPage] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   const handleLogin = () => {
@@ -132,6 +134,13 @@ export default function Navbar() {
         <TravelAccount
           isOpen={showTravelAccount}
           onClose={() => setShowTravelAccount(false)}
+        />
+      )}
+
+      {showTravelTwoPage && (
+        <TravelTwoPage
+        // isOpen={showTravelTwoPage}
+        // onClose={() => setShowTravelTwoPage(false)}
         />
       )}
 

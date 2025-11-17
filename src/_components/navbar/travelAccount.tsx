@@ -1,6 +1,7 @@
 'use client';
 
 import { Calendar, X } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -22,8 +23,8 @@ type FormData = {
 
 type ValidationErrors = Partial<Record<keyof FormData, string>>;
 
-// Main Componnet which is at parent state
 export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
+  const router = useRouter();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
@@ -35,44 +36,41 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
     preferredContactTime: '',
   });
 
-  // again you create a component inside the another component wraping who returnning function
   const handleChange = (field: keyof FormData, value: string | Date | null) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  // we need to close this here to make it only function if we close at bottom then its converted  from function to jsx component
-
-  // I create a formHandle function which will take all the data from the form and will console it and check
   const formHandle = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    router.push('/travel2');
 
-    try {
-      const res = await fetch('/api/profile', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+    // try {
+    //   const res = await fetch('/api/profile', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(formData),
+    //   });
 
-      const data = await res.json();
+    //   const data = await res.json();
 
-      if (res.ok) {
-        alert('Profile saved successfully!');
-        onClose();
-      } else {
-        alert(data.error || 'Failed to save profile');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Something went wrong, please try again.');
-    }
+    //   if (res.ok) {
+    //     alert('Profile saved successfully!');
+    //     onClose();
+    //   } else {
+    //     alert(data.error || 'Failed to save profile');
+    //   }
+    // } catch (err) {
+    //   console.error(err);
+    //   alert('Something went wrong, please try again.');
+    // }
   };
 
   if (!isOpen) return null;
 
   return (
     <div className="absolute inset-0 w-full flex items-center justify-center bg-black/50 z-50">
-      <div className="flex items-center justify-center w-full h-screen mt-48 ">
+      <div className="flex items-center justify-center w-full h-screen mt-48">
         <div className="bg-[#F3F3F3] w-full max-w-3xl inset-0 rounded-2xl mt-78 shadow-lg p-4 md:p-8 relative animate-fadeIn">
           {/* Close Button */}
           <button

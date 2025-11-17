@@ -79,7 +79,7 @@ export default function NewAccount({ isOpen, onClose, onContinue }: Props) {
             Back
           </button>
           <button
-            onClick={onContinue} // ✅ call parent
+            onClick={onContinue}
             disabled={!selected}
             className={`px-5 py-2 rounded-lg text-white transition ${
               selected
