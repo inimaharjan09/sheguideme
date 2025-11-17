@@ -43,9 +43,29 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
   // we need to close this here to make it only function if we close at bottom then its converted  from function to jsx component
 
   // I create a formHandle function which will take all the data from the form and will console it and check
-  const formHandle = (e: React.FormEvent) => {
+  const formHandle = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+
+    try {
+      const res = await fetch('/api/profile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert('Profile saved successfully!');
+        onClose();
+      } else {
+        alert(data.error || 'Failed to save profile');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Something went wrong, please try again.');
+    }
   };
 
   if (!isOpen) return null;
