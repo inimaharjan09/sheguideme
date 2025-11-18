@@ -6,19 +6,22 @@ import { Upload, ChevronDown, X } from 'lucide-react';
 export default function TravelTwoPage({
   isOpen,
   onClose,
+  onContinue,
 }: {
   isOpen: boolean;
   onClose: () => void;
+  onContinue: () => void;
 }) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Submitted!');
+    onContinue();
   };
 
   return (
-    <div className="absolute inset-0 w-full flex items-center justify-center bg-black/50 z-50">
-      <div className="flex items-center justify-center w-full h-screen mt-48">
-        <div className="bg-[#F3F3F3] w-full max-w-3xl inset-0 rounded-2xl mt-78 shadow-lg p-4 md:p-8 relative animate-fadeIn">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
+      <div className="flex items-center justify-center w-full h-screen mt-30">
+        <div className="bg-[#F3F3F3] w-full max-w-3xl rounded-2xl shadow-lg p-4 md:p-8 relative max-h-[90vh] overflow-y-auto animate-fadeIn">
           {/* close button */}
           <button
             onClick={onClose}
@@ -34,7 +37,7 @@ export default function TravelTwoPage({
             world your way.
           </p>
 
-          <div className="flex justify-center gap-10 mb-10">
+          <div className="flex justify-center gap-10 mb-5">
             {[1, 2, 3, 4].map((num) => (
               <div
                 key={num}
@@ -50,7 +53,7 @@ export default function TravelTwoPage({
             ))}
           </div>
 
-          <p className="mb-8 text-sm font-semibold">Detail Information</p>
+          <p className="mb-3 text-sm font-semibold">Detail Information</p>
 
           {/* form */}
           <div className="border-none rounded-xl p-2 shadow-sm bg-white">
@@ -61,12 +64,14 @@ export default function TravelTwoPage({
               {/* Profile Picture */}
               <div>
                 <label className="text-sm font-semibold">Profile Picture</label>
-                <div className="mt-1 border rounded-lg p-3 flex items-center justify-between">
+                <div className="flex">
+                  <span className="bg-gray-100 border border-r-0 border-[#CED4DA] px-4 py-2 rounded-l-lg text-gray-600">
+                    Choose File
+                  </span>
                   <input
                     type="file"
-                    className="border-none outline-none text-sm"
+                    className="flex-1 border rounded-r-lg px-4 py-2 outline-none border-[#CED4DA] focus:border-pink-500"
                   />
-                  <Upload size={18} className="text-gray-500" />
                 </div>
                 <p className="text-xs text-gray-400 mt-1">
                   Upload up to 5 photos (at least 2 full photos)
@@ -77,7 +82,7 @@ export default function TravelTwoPage({
               <div>
                 <label className="text-sm font-semibold">Country</label>
                 <div className="relative mt-1">
-                  <select className="w-full border rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
                     <option>Nepal</option>
                     <option>India</option>
                     <option>Bhutan</option>
@@ -92,7 +97,7 @@ export default function TravelTwoPage({
                 <input
                   type="text"
                   placeholder="e.g. Kathmandu"
-                  className="w-full border rounded-lg px-4 py-2 mt-1 outline-none"
+                  className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                 />
               </div>
 
@@ -105,14 +110,14 @@ export default function TravelTwoPage({
                   <input
                     type="text"
                     placeholder="e.g. 02/03/1995"
-                    className="w-full border rounded-lg px-4 py-2 mt-1 outline-none"
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                   />
                 </div>
 
                 <div>
                   <label className="text-sm font-semibold">Body Color</label>
                   <div className="relative mt-1">
-                    <select className="w-full border rounded-lg px-4 py-2 appearance-none outline-none">
+                    <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
                       <option>Select</option>
                       <option>Fair</option>
                       <option>Medium</option>
@@ -132,7 +137,7 @@ export default function TravelTwoPage({
                   <input
                     type="text"
                     placeholder="5.8"
-                    className="w-full border rounded-lg px-4 py-2 mt-1 outline-none"
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                   />
                 </div>
 
@@ -143,7 +148,7 @@ export default function TravelTwoPage({
                   <input
                     type="text"
                     placeholder="70"
-                    className="w-full border rounded-lg px-4 py-2 mt-1 outline-none"
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                   />
                 </div>
               </div>
@@ -152,7 +157,7 @@ export default function TravelTwoPage({
               <div>
                 <label className="text-sm font-semibold">Gender</label>
                 <div className="relative mt-1">
-                  <select className="w-full border rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
                     <option>Select Gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -168,7 +173,7 @@ export default function TravelTwoPage({
                   Religion (Optional)
                 </label>
                 <div className="relative mt-1">
-                  <select className="w-full border rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
                     <option>Religion (Optional)</option>
                     <option>Hindu</option>
                     <option>Buddhist</option>

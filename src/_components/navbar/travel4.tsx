@@ -1,9 +1,16 @@
 'use client';
 
-import { Calendar, X } from 'lucide-react';
+import { Calendar, CalendarCheck, Clock, X } from 'lucide-react';
 import { useState } from 'react';
 
-export default function TravelFourPage() {
+export default function TravelFourPage({
+  isOpen,
+  onClose,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onContinue: () => void;
+}) {
   const [formData, setFormData] = useState({
     hobbies: '',
     citySpots: '',
@@ -26,9 +33,9 @@ export default function TravelFourPage() {
   };
 
   return (
-    <div className="absolute inset-0 w-full flex items-center justify-center bg-black/50 z-50">
-      <div className="flex items-center justify-center w-full h-screen mt-48">
-        <div className='className="bg-[#F3F3F3] w-full max-w-3xl inset-0 rounded-2xl mt-78 shadow-lg p-4 md:p-8 relative animate-fadeIn"'>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
+      <div className="flex items-center justify-center w-full h-screen mt-30">
+        <div className="bg-[#F3F3F3] w-full max-w-3xl rounded-2xl shadow-lg p-4 md:p-8 relative max-h-[90vh] overflow-y-auto animate-fadeIn">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 flex items-end hover:cursor-pointer"
@@ -45,7 +52,7 @@ export default function TravelFourPage() {
           </p>
 
           {/* Steps */}
-          <div className="flex justify-center gap-10 mb-10">
+          <div className="flex justify-center gap-10 mb-5">
             {[1, 2, 3, 4].map((num) => (
               <div
                 key={num}
@@ -61,7 +68,7 @@ export default function TravelFourPage() {
             ))}
           </div>
 
-          <h2 className="mb-2 font-semibold">Hobbies and Interests</h2>
+          <h2 className="mb-3 font-semibold">Hobbies and Interests</h2>
 
           <div className="border-none rounded-xl p-2 shadow-sm bg-white">
             {/* Hobbies */}
@@ -71,7 +78,7 @@ export default function TravelFourPage() {
             <select
               name="hobbies"
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 mb-4"
+              className="w-full border border-[#CED4DA] rounded-lg p-3 mb-4"
             >
               <option>Select</option>
             </select>
@@ -83,7 +90,7 @@ export default function TravelFourPage() {
             <select
               name="citySpots"
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 mb-4"
+              className="w-full border border-[#CED4DA] rounded-lg p-3 mb-4"
             >
               <option>Select</option>
             </select>
@@ -97,7 +104,7 @@ export default function TravelFourPage() {
               name="images"
               onChange={handleChange}
               multiple
-              className="w-full border rounded-lg p-2 mb-1"
+              className="w-full border border-[#CED4DA] rounded-lg p-2 mb-1"
             />
             <p className="text-xs text-gray-500 mb-4">Upload up to 5 photos</p>
 
@@ -108,7 +115,7 @@ export default function TravelFourPage() {
             <select
               name="villageSpots"
               onChange={handleChange}
-              className="w-full border rounded-lg p-3 mb-4"
+              className="w-full border border-[#CED4DA] rounded-lg p-3 mb-4"
             >
               <option>Select</option>
             </select>
@@ -122,7 +129,7 @@ export default function TravelFourPage() {
               name="otherOfferings"
               placeholder="e.g., Pokhara Lakes, Mustang Trek, Bhaktapur Heritage, etc."
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg mb-6"
+              className="w-full p-3 border border-[#CED4DA] rounded-lg mb-6"
             />
 
             {/* Available Time */}
@@ -135,22 +142,20 @@ export default function TravelFourPage() {
               <div className="relative">
                 <input
                   type="date"
-                  name="fromDate1"
                   onChange={handleChange}
-                  className="w-full border rounded-lg p-3"
+                  className="w-full border border-[#CED4DA] rounded-lg p-3"
                 />
-                <Calendar className="absolute right-3 top-3 w-5 h-5 text-gray-500" />
+                {/* <CalendarCheck className="absolute right-3 top-3 w-5 h-5 text-gray-500" /> */}
               </div>
 
               {/* To date */}
               <div className="relative">
                 <input
                   type="date"
-                  name="toDate1"
                   onChange={handleChange}
-                  className="w-full border rounded-lg p-3"
+                  className="w-full border border-[#CED4DA] rounded-lg p-3"
                 />
-                <Calendar className="absolute right-3 top-3 w-5 h-5 text-gray-500" />
+                {/* <CalendarCheck className="absolute right-3 top-3 w-5 h-5 text-gray-500" /> */}
               </div>
             </div>
 
@@ -159,25 +164,30 @@ export default function TravelFourPage() {
               <div className="relative">
                 <input
                   type="date"
-                  name="fromDate2"
                   onChange={handleChange}
-                  className="w-full border rounded-lg p-3"
+                  className="w-full border border-[#CED4DA] rounded-lg p-3"
                 />
-                <Calendar className="absolute right-3 top-3 w-5 h-5 text-gray-500" />
+                {/* <Clock className="absolute right-3 top-3 w-5 h-5 text-gray-500" /> */}
               </div>
 
               {/* To AM/PM */}
-              <select
-                name="toDate2"
+              {/* <select
                 onChange={handleChange}
-                className="border rounded-lg p-3"
+                className="border border-[#CED4DA] rounded-lg p-3"
               >
                 <option>To During AM / PM</option>
                 <option>Morning</option>
                 <option>Afternoon</option>
                 <option>Evening</option>
                 <option>Full Day</option>
-              </select>
+              </select> */}
+              <input
+                type="time"
+                name="appointment"
+                id="appointment"
+                onChange={handleChange}
+                className="border border-[#CED4DA] rounded-lg p-3"
+              />
             </div>
 
             {/* Submit Button */}

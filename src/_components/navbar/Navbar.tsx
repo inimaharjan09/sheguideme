@@ -5,6 +5,8 @@ import NewAccount from './newAccount';
 import TravelAccount from './travelAccount';
 import LoginPage from './loginPage';
 import TravelTwoPage from './travel2';
+import TravelThreePage from './travel3';
+import TravelFourPage from './travel4';
 
 export default function Navbar() {
   const [language, setLanguage] = useState('Language');
@@ -13,6 +15,8 @@ export default function Navbar() {
   const [showNewAccount, setShowNewAccount] = useState(false);
   const [showTravelAccount, setShowTravelAccount] = useState(false);
   const [showTravelTwoPage, setShowTravelTwoPage] = useState(false);
+  const [showTravelThreePage, setShowTravelThreePage] = useState(false);
+  const [showTravelFourPage, setShowTravelFourPage] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   const handleLogin = () => {
@@ -22,7 +26,7 @@ export default function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <nav className="flex sticky top-0 items-center justify-between px-5 md:px-10 py-4 bg-white shadow-sm z-50">
+      <nav className="flex sticky top-0 items-center justify-between px-5 md:px-10 py-4 bg-white shadow-sm z-999">
         <div className="text-[28px] md:text-[32px] font-kalnia font-semibold text-[#D8465C]">
           sheguideme
         </div>
@@ -50,8 +54,7 @@ export default function Navbar() {
                 Login
               </button>
               <button className="flex items-center gap-1">
-                <Globe size={20} />
-                {language}
+                <Globe size={20} /> {language}
               </button>
             </div>
           )}
@@ -98,6 +101,7 @@ export default function Navbar() {
 
           <button
             onClick={() => {
+              setShowPopup(true);
               setShowNewAccount(true);
               setMenuOpen(false);
             }}
@@ -124,6 +128,7 @@ export default function Navbar() {
           isOpen={showNewAccount}
           onClose={() => setShowNewAccount(false)}
           onContinue={() => {
+            setShowPopup(true);
             setShowNewAccount(false);
             setShowTravelAccount(true);
           }}
@@ -134,17 +139,67 @@ export default function Navbar() {
         <TravelAccount
           isOpen={showTravelAccount}
           onClose={() => setShowTravelAccount(false)}
+          onContinue={() => {
+            setShowPopup(true);
+            setShowTravelAccount(false);
+            setShowTravelTwoPage(true);
+          }}
         />
       )}
 
       {showTravelTwoPage && (
         <TravelTwoPage
-        // isOpen={showTravelTwoPage}
-        // onClose={() => setShowTravelTwoPage(false)}
+          isOpen={showTravelTwoPage}
+          onClose={() => setShowTravelTwoPage(false)}
+          onContinue={() => {
+            setShowPopup(true);
+            setShowTravelAccount(false);
+            setShowTravelTwoPage(false);
+            setShowTravelThreePage(true);
+          }}
         />
       )}
 
-      {showLoginForm && <LoginPage onClose={() => setShowLoginForm(false)} />}
+      {showTravelThreePage && (
+        <TravelThreePage
+          isOpen={showTravelThreePage}
+          onClose={() => {
+            setShowTravelThreePage(false);
+          }}
+          onContinue={() => {
+            setShowPopup(true);
+            setShowTravelAccount(false);
+            setShowTravelTwoPage(false);
+            setShowTravelThreePage(false);
+            setShowTravelFourPage(true);
+          }}
+        />
+      )}
+
+      {showTravelFourPage && (
+        <TravelFourPage
+          isOpen={showTravelFourPage}
+          onClose={() => {
+            setShowTravelFourPage(false);
+          }}
+          onContinue={() => {
+            setShowPopup(true);
+            setShowTravelAccount(false);
+            setShowTravelTwoPage(false);
+            setShowTravelThreePage(false);
+            setShowTravelFourPage(true);
+          }}
+        />
+      )}
+
+      {showLoginForm && (
+        <LoginPage
+          onClose={() => {
+            setShowPopup(true);
+            setShowLoginForm(false);
+          }}
+        />
+      )}
     </>
   );
 }

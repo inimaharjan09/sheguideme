@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 type TravelerPopupProps = {
   isOpen: boolean;
   onClose: () => void;
+  onContinue: () => void;
 };
 
 type FormData = {
@@ -23,7 +24,11 @@ type FormData = {
 
 type ValidationErrors = Partial<Record<keyof FormData, string>>;
 
-export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
+export default function TravelAccount({
+  isOpen,
+  onClose,
+  onContinue,
+}: TravelerPopupProps) {
   const router = useRouter();
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [formData, setFormData] = useState<FormData>({
@@ -43,7 +48,7 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
   const formHandle = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    router.push('/travel2');
+    onContinue();
 
     // try {
     //   const res = await fetch('/api/profile', {
@@ -69,9 +74,9 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="absolute inset-0 w-full flex items-center justify-center bg-black/50 z-50">
-      <div className="flex items-center justify-center w-full h-screen mt-48">
-        <div className="bg-[#F3F3F3] w-full max-w-3xl inset-0 rounded-2xl mt-78 shadow-lg p-4 md:p-8 relative animate-fadeIn">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
+      <div className="flex items-center justify-center w-full h-screen mt-30">
+        <div className="bg-[#F3F3F3] w-full max-w-3xl rounded-2xl shadow-lg p-4 md:p-8 relative max-h-[90vh] overflow-y-auto animate-fadeIn">
           {/* Close Button */}
           <button
             onClick={onClose}
@@ -89,7 +94,7 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
             Create your account to discover trusted local guides and explore the
             world your way.
           </p>
-          <div className="flex justify-center gap-10 mb-10">
+          <div className="flex justify-center gap-10 mb-5">
             {[1, 2, 3, 4].map((num) => (
               <div
                 key={num}
@@ -105,7 +110,7 @@ export default function TravelAccount({ isOpen, onClose }: TravelerPopupProps) {
             ))}
           </div>
 
-          <p className="mb-8 text-sm font-semibold">Basic Information</p>
+          <p className="mb-3 text-sm font-semibold">Basic Information</p>
 
           {/* Form */}
           <div className="border-none rounded-xl p-2 shadow-sm bg-white">
