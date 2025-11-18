@@ -7,6 +7,7 @@ import LoginPage from './loginPage';
 import TravelTwoPage from './travel2';
 import TravelThreePage from './travel3';
 import TravelFourPage from './travel4';
+import DashboardPage from './dashboard';
 
 export default function Navbar() {
   const [language, setLanguage] = useState('Language');
@@ -17,6 +18,7 @@ export default function Navbar() {
   const [showTravelTwoPage, setShowTravelTwoPage] = useState(false);
   const [showTravelThreePage, setShowTravelThreePage] = useState(false);
   const [showTravelFourPage, setShowTravelFourPage] = useState(false);
+  const [showDashboardPage, setShowDashboardPage] = useState(false);
   const [showLoginForm, setShowLoginForm] = useState(false);
 
   const handleLogin = () => {
@@ -190,7 +192,17 @@ export default function Navbar() {
             setShowTravelAccount(false);
             setShowTravelTwoPage(false);
             setShowTravelThreePage(false);
-            setShowTravelFourPage(true);
+            setShowTravelFourPage(false);
+            setShowDashboardPage(true);
+          }}
+        />
+      )}
+
+      {showDashboardPage && (
+        <DashboardPage
+          isOpen={showDashboardPage}
+          onClose={() => {
+            setShowDashboardPage(false);
           }}
         />
       )}
