@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Globe, Menu, Search } from 'lucide-react';
+import { ChevronDown, Globe, Menu, Search } from 'lucide-react';
 import NewAccount from './newAccount';
 import TravelAccount from './travelAccount';
 import LoginPage from './loginPage';
@@ -45,11 +45,14 @@ export default function Navbar() {
 
           {showPopup && (
             <div className="flex gap-3 items-center justify-center px-5">
-              <span className="text-lg text-red-500">Browse Profile By </span>
+              <span className="flex items-center justify-center gap-1">
+                Browse Profile By
+                <ChevronDown size={20} />
+              </span>
               <span>Help</span>
               <button
                 onClick={handleLogin}
-                className="border px-3 py-1 rounded hover:bg-gray-50"
+                className="text-red-500 px-3 py-1 rounded hover:bg-gray-50"
               >
                 Login
               </button>
@@ -101,7 +104,7 @@ export default function Navbar() {
 
           <button
             onClick={() => {
-              setShowPopup(true);
+              setShowPopup(false);
               setShowNewAccount(true);
               setMenuOpen(false);
             }}
