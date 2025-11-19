@@ -3,6 +3,25 @@
 import { useState } from 'react';
 import { Upload, ChevronDown, X } from 'lucide-react';
 
+const calculateAge = (dobString: string): number | null => {
+  if (!dobString) return null;
+
+  const birthDate = new Date(dobString);
+  const today = new Date();
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+
+  if (
+    monthDifference < 0 ||
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+};
+
 export default function TravelTwoPage({
   isOpen,
   onClose,
@@ -12,9 +31,21 @@ export default function TravelTwoPage({
   onClose: () => void;
   onContinue: () => void;
 }) {
+  const [formData, setFormData] = useState({
+    profilePicture: '',
+    country: 'Select',
+    city: '',
+    dateOfBirth: '',
+    bodyColor: '',
+    height: '',
+    weight: '',
+    gender: 'Select',
+    religion: 'Select',
+  });
+  const calculatedAge = calculateAge(formData.dateOfBirth);
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Submitted!');
+    console.log('Submitted:', formData);
     onContinue();
   };
 
@@ -69,7 +100,9 @@ export default function TravelTwoPage({
                     Choose File
                   </span>
                   <input
+                    required
                     type="file"
+                    placeholder="Upload"
                     className="flex-1 border rounded-r-lg px-4 py-2 outline-none border-[#CED4DA] focus:border-pink-500"
                   />
                 </div>
@@ -82,10 +115,14 @@ export default function TravelTwoPage({
               <div>
                 <label className="text-sm font-semibold">Country</label>
                 <div className="relative mt-1">
-                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select
+                    required
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none"
+                  >
                     <option>Nepal</option>
+                    <option>China</option>
                     <option>India</option>
-                    <option>Bhutan</option>
+                    <option>Mexico</option>
                   </select>
                   <ChevronDown className="absolute right-3 top-3 text-gray-400" />
                 </div>
@@ -95,8 +132,13 @@ export default function TravelTwoPage({
               <div>
                 <label className="text-sm font-semibold">City</label>
                 <input
+                  required
                   type="text"
                   placeholder="e.g. Kathmandu"
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
                   className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                 />
               </div>
@@ -106,10 +148,20 @@ export default function TravelTwoPage({
                 <div>
                   <label className="text-sm font-semibold">
                     Date of Birth / Age
+                    {/* Display the calculated age */}
+                    {calculatedAge !== null && calculatedAge > 0 && (
+                      <span className="ml-2 text-pink-600">
+                        ({calculatedAge} years old)
+                      </span>
+                    )}
                   </label>
                   <input
-                    type="text"
-                    placeholder="e.g. 02/03/1995"
+                    required
+                    type="date"
+                    value={formData.dateOfBirth}
+                    onChange={(e) =>
+                      setFormData({ ...formData, dateOfBirth: e.target.value })
+                    }
                     className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                   />
                 </div>
@@ -117,7 +169,10 @@ export default function TravelTwoPage({
                 <div>
                   <label className="text-sm font-semibold">Body Color</label>
                   <div className="relative mt-1">
-                    <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
+                    <select
+                      required
+                      className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none"
+                    >
                       <option>Select</option>
                       <option>Fair</option>
                       <option>Medium</option>
@@ -135,8 +190,13 @@ export default function TravelTwoPage({
                     Height (in feet)
                   </label>
                   <input
+                    required
                     type="text"
-                    placeholder="5.8"
+                    placeholder="5'8"
+                    value={formData.height}
+                    onChange={(e) =>
+                      setFormData({ ...formData, height: e.target.value })
+                    }
                     className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                   />
                 </div>
@@ -146,8 +206,13 @@ export default function TravelTwoPage({
                     Weight (in kg)
                   </label>
                   <input
+                    required
                     type="text"
                     placeholder="70"
+                    value={formData.weight}
+                    onChange={(e) =>
+                      setFormData({ ...formData, weight: e.target.value })
+                    }
                     className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                   />
                 </div>
@@ -157,7 +222,11 @@ export default function TravelTwoPage({
               <div>
                 <label className="text-sm font-semibold">Gender</label>
                 <div className="relative mt-1">
-                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select
+                    required
+                    name="gender"
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none"
+                  >
                     <option>Select Gender</option>
                     <option>Male</option>
                     <option>Female</option>
@@ -173,12 +242,18 @@ export default function TravelTwoPage({
                   Religion (Optional)
                 </label>
                 <div className="relative mt-1">
-                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select
+                    required
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none"
+                  >
                     <option>Religion (Optional)</option>
+                    <option>All of respect and accommodated</option>
                     <option>Hindu</option>
-                    <option>Buddhist</option>
                     <option>Christian</option>
-                    <option>Muslim</option>
+                    <option>Buddhist</option>
+                    <option>Judaism</option>
+                    <option>Islam</option>
+                    <option>Other Specify</option>
                   </select>
                   <ChevronDown className="absolute right-3 top-3 text-gray-400" />
                 </div>

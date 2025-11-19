@@ -14,9 +14,9 @@ export default function LoginPage({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-50 p-4">
-      <div className="bg-[#F3F3F3] inset-0 w-full max-w-3xl rounded-2xl shadow-lg p-6 mt-28 md:p-8 relative">
-        <div>
+    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
+      <div className="flex items-center justify-center w-full h-screen mt-30">
+        <div className="bg-[#F3F3F3] w-full max-w-3xl rounded-2xl shadow-lg p-4 md:p-8 relative max-h-[90vh] overflow-y-auto animate-fadeIn">
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -55,9 +55,15 @@ export default function LoginPage({ onClose }: { onClose: () => void }) {
               <button className="w-full bg-[#D8465C] text-white py-2 rounded-lg font-medium hover:bg-rose-600 transition">
                 Login
               </button>
-              <button className="w-full mt-3 border py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition">
-                Login with Google
-              </button>
+              <a
+                href="https://accounts.google.com/o/oauth2/v2/auth?client_id=YOUR_CLIENT_ID.apps.googleusercontent.com&redirect_uri=http://localhost:3000/auth/google/callback&response_type=code&scope=email%20profile&state=random_string_for_security"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="w-full mt-3 border py-2 rounded-lg text-sm font-medium hover:bg-gray-50 transition">
+                  Login with Google
+                </button>
+              </a>
               <div className="mt-5 text-sm">
                 <p>
                   Don't have an account?{' '}

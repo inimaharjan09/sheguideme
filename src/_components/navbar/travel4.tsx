@@ -3,6 +3,18 @@
 import { X } from 'lucide-react';
 import { useState } from 'react';
 
+type FormData = {
+  hobbies: string;
+  citySpots: string;
+  villageSpots: string;
+  otherOfferings: string;
+  fromDate1: string;
+  toDate1: string;
+  fromDate2: string;
+  toDate2: string;
+  images: FileList | null;
+};
+
 type TravelFourPageProps = {
   isOpen: boolean;
   onClose: () => void;
@@ -14,7 +26,7 @@ export default function TravelFourPage({
   onClose,
   onContinue,
 }: TravelFourPageProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     hobbies: '',
     citySpots: '',
     villageSpots: '',
@@ -23,11 +35,11 @@ export default function TravelFourPage({
     toDate1: '',
     fromDate2: '',
     toDate2: '',
-    images: null as FileList | null,
+    images: 'null' as unknown as FileList,
   });
   const formHandle = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log('Submitted:', formData);
     onContinue();
   };
 
@@ -79,10 +91,26 @@ export default function TravelFourPage({
                 Hobbies / Interests / Services
               </label>
               <select
-                name="hobbies"
+                required
+                value={formData.hobbies}
+                onChange={(e) =>
+                  setFormData({ ...formData, hobbies: e.target.value })
+                }
                 className="w-full border border-[#CED4DA] rounded-lg p-3 mb-4"
               >
                 <option>Select</option>
+                <option>Travelling and school volunteering</option>
+                <option>Travelling and rural community support</option>
+                <option>
+                  Volunteer teaching and skill transfer olunteer teaching and
+                  skill transfer
+                </option>
+                <option>Sport club and playing </option>
+                <option>Hotel reservation and guide service</option>
+                <option>Home stay and service charge</option>
+                <option>Owned flat and service charge</option>
+                <option>Rented house and service charge</option>
+                <option>Business outlet and service charge</option>
               </select>
 
               {/* City Spots */}
@@ -90,23 +118,31 @@ export default function TravelFourPage({
                 Typical offering city spots
               </label>
               <select
-                name="citySpots"
+                value={formData.citySpots}
+                onChange={(e) =>
+                  setFormData({ ...formData, citySpots: e.target.value })
+                }
+                required
                 className="w-full border border-[#CED4DA] rounded-lg p-3 mb-4"
               >
                 <option>Select</option>
               </select>
 
               {/* Images */}
-              <label className="block text-sm font-semibold mb-1">
-                Upload Images
-              </label>
+              <label className="text-sm font-semibold">Upload Images</label>
               <input
+                required
                 type="file"
-                name="images"
                 multiple
-                className="w-full border border-[#CED4DA] rounded-lg p-2 mb-1"
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    images: e.target.files,
+                  }))
+                }
+                className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
               />
-              <p className="text-xs text-gray-500 mb-4">
+              <p className="text-xs text-gray-400 mt-1">
                 Upload up to 5 photos
               </p>
 
@@ -115,7 +151,11 @@ export default function TravelFourPage({
                 Typical offering village spots
               </label>
               <select
-                name="villageSpots"
+                value={formData.villageSpots}
+                onChange={(e) =>
+                  setFormData({ ...formData, villageSpots: e.target.value })
+                }
+                required
                 className="w-full border border-[#CED4DA] rounded-lg p-3 mb-4"
               >
                 <option>Select</option>
@@ -126,8 +166,12 @@ export default function TravelFourPage({
                 Other Offerings (Landmarks / Places)
               </label>
               <input
+                required
+                value={formData.otherOfferings}
+                onChange={(e) =>
+                  setFormData({ ...formData, otherOfferings: e.target.value })
+                }
                 type="text"
-                name="otherOfferings"
                 placeholder="e.g., Pokhara Lakes, Mustang Trek..."
                 className="w-full p-3 border border-[#CED4DA] rounded-lg mb-6"
               />
@@ -140,13 +184,21 @@ export default function TravelFourPage({
               {/* Date */}
               <div className="grid grid-cols-2 gap-4 mb-4">
                 <input
+                  required
+                  value={formData.fromDate1}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fromDate1: e.target.value })
+                  }
                   type="date"
-                  name="fromDate1"
                   className="w-full border border-[#CED4DA] rounded-lg p-3"
                 />
                 <input
+                  required
+                  value={formData.toDate1}
+                  onChange={(e) =>
+                    setFormData({ ...formData, toDate1: e.target.value })
+                  }
                   type="date"
-                  name="toDate1"
                   className="w-full border border-[#CED4DA] rounded-lg p-3"
                 />
               </div>
@@ -154,13 +206,21 @@ export default function TravelFourPage({
               {/* Time */}
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <input
+                  required
+                  value={formData.fromDate2}
+                  onChange={(e) =>
+                    setFormData({ ...formData, fromDate2: e.target.value })
+                  }
                   type="time"
-                  name="fromDate2"
                   className="border border-[#CED4DA] rounded-lg p-3"
                 />
                 <input
+                  required
+                  value={formData.toDate2}
+                  onChange={(e) =>
+                    setFormData({ ...formData, toDate2: e.target.value })
+                  }
                   type="time"
-                  name="toDate2"
                   className="border border-[#CED4DA] rounded-lg p-3"
                 />
               </div>

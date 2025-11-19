@@ -47,7 +47,7 @@ export default function TravelAccount({
 
   const formHandle = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    console.log('Submitted:', formData);
     onContinue();
 
     // try {
@@ -118,6 +118,7 @@ export default function TravelAccount({
               <div>
                 <label className="text-sm font-semibold">Full Name</label>
                 <input
+                  required
                   onChange={(e) => handleChange('fullName', e.target.value)}
                   type="text"
                   value={formData.fullName}
@@ -129,6 +130,7 @@ export default function TravelAccount({
               <div>
                 <label className="text-sm font-semibold">User Name</label>
                 <input
+                  required
                   onChange={(e) => handleChange('userName', e.target.value)}
                   type="text"
                   value={formData.userName}
@@ -144,6 +146,7 @@ export default function TravelAccount({
                     +977
                   </span>
                   <input
+                    required
                     onChange={(e) =>
                       handleChange('contactNumber', e.target.value)
                     }
@@ -158,6 +161,7 @@ export default function TravelAccount({
               <div>
                 <label className="text-sm font-semibold">Email Address</label>
                 <input
+                  required
                   onChange={(e) => handleChange('emailAddress', e.target.value)}
                   value={formData.emailAddress}
                   type="email"
@@ -187,8 +191,14 @@ export default function TravelAccount({
                 </label>
                 <div className="relative w-full border border-gray-300 focus:border-pink-500 rounded-lg mt-1 outline-none px-4 py-2 ">
                   <ReactDatePicker
+                    required
                     selected={formData.availableDaysTime}
-                    onChange={(date: Date | null) => setSelectedDate(date)}
+                    onChange={(date: Date | null) =>
+                      setFormData((prevFormData) => ({
+                        ...prevFormData,
+                        availableDaysTime: date,
+                      }))
+                    }
                     placeholderText="Select a date"
                     dateFormat="dd/MM/yyyy"
                   />
@@ -204,6 +214,7 @@ export default function TravelAccount({
                   Preferred Contact Time
                 </label>
                 <input
+                  required
                   value={formData.preferredContactTime}
                   onChange={(e) =>
                     handleChange('preferredContactTime', e.target.value)

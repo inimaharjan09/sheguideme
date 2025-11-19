@@ -2,6 +2,7 @@
 
 import { X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 type DashboardPageProps = {
@@ -37,9 +38,11 @@ export default function DashboardPage({ isOpen, onClose }: DashboardPageProps) {
               travelers can discover and contact you directly.
             </p>
 
-            <button className="bg-[#D8465C] text-white py-2 px-6 rounded-xl hover:bg-[#c43b4f]">
-              Go to Dashboard
-            </button>
+            <Link href="/profile">
+              <button className="bg-[#D8465C] text-white py-2 px-6 rounded-xl hover:bg-[#c43b4f]">
+                Go to Dashboard
+              </button>
+            </Link>
           </div>
         </div>
       </div>

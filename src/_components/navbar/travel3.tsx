@@ -21,19 +21,39 @@ export default function TravelThreePage({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [certificates, setCertificates] = useState(trainingCerts);
 
+  const [formData, setFormData] = useState({
+    educationQualification: 'Select',
+    educationArea: '',
+    ownedVehicle: '',
+    hiredVehicle: '',
+    serviceCharge: '',
+  });
+
+  const handleTrainingCertChange = (index: number, value: string) => {
+    setCertificates((prev) => {
+      const updated = [...prev];
+      updated[index].cert = value;
+      return updated;
+    });
+  };
+
+  const handleFormChange = (name: string, value: string) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Submitted');
+    console.log('Submitted', {
+      ...formData,
+      certificates,
+    });
     onContinue();
   };
 
-  const handleTrainingCertChange = (index: number, value: string) => {
-    setCertificates((prevCerts) => {
-      const newCerts = [...prevCerts];
-      newCerts[index] = { ...newCerts[index], cert: value };
-      return newCerts;
-    });
-  };
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-100">
@@ -54,6 +74,8 @@ export default function TravelThreePage({
             Create your account to discover trusted local guides and explore the
             world your way.
           </p>
+
+          {/* PROGRESS STEPPER */}
           <div className="flex justify-center gap-10 mb-5">
             {[1, 2, 3, 4].map((num) => (
               <div
@@ -79,19 +101,28 @@ export default function TravelThreePage({
               onSubmit={handleSubmit}
               className="space-y-6 w-full text-left"
             >
-              
               {/* Education Qualification */}
               <div>
                 <label className="text-sm font-semibold">
                   Education Qualification
                 </label>
                 <div className="relative mt-1">
-                  <select className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none">
+                  <select
+                    value={formData.educationQualification}
+                    onChange={(e) =>
+                      handleFormChange('educationQualification', e.target.value)
+                    }
+                    required
+                    className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 appearance-none outline-none"
+                  >
                     <option>Select</option>
-                    <option>High School</option>
-                    <option>Bachelor's Degree</option>
-                    <option>Master's Degree</option>
-                    <option>Other</option>
+                    <option>Upto Grade 10 (Under High School)</option>
+                    <option>Upto Grade (10+2- High School)</option>
+                    <option>Bachelor (under graduate Degree)</option>
+                    <option>Master (Graduate Degree )</option>
+                    <option>Doctoral Degree (PhD)</option>
+                    <option>Post Doctoral Degree</option>
+                    <option>Other Specify</option>
                   </select>
                   <ChevronDown className="absolute right-3 top-3 text-gray-400" />
                 </div>
@@ -101,13 +132,18 @@ export default function TravelThreePage({
               <div>
                 <label className="text-sm font-semibold">Education Area</label>
                 <input
+                  value={formData.educationArea}
+                  onChange={(e) =>
+                    handleFormChange('educationArea', e.target.value)
+                  }
+                  required
                   type="text"
                   placeholder="e.g. Medical, Tourism, Engineering..."
                   className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                 />
               </div>
 
-              {/* Specific Training Certificates */}
+              {/* Training Certificates */}
               <div>
                 <label className="text-sm font-semibold">
                   Specific Training Certificate
@@ -115,6 +151,7 @@ export default function TravelThreePage({
 
                 {certificates.map((cert, index) => (
                   <input
+                    required
                     key={index}
                     type="text"
                     value={cert.cert}
@@ -133,14 +170,14 @@ export default function TravelThreePage({
                   Guide and Service Experience
                 </label>
                 <div className="flex flex-col mt-1 border border-[#CED4DA] rounded-lg p-3">
-                  <input type="file" className="text-sm" />
+                  <input required type="file" className="text-sm" />
                 </div>
                 <p className="text-xs text-gray-500 mt-1">
                   Upload up to 5 PDF files
                 </p>
               </div>
 
-              {/* Short Bio / Resume */}
+              {/* Resume */}
               <div>
                 <label className="text-sm font-semibold">
                   Short Bio Data / Resume
@@ -158,25 +195,59 @@ export default function TravelThreePage({
                 </label>
                 <div className="flex items-center gap-6 mt-1 text-sm">
                   <label className="flex items-center gap-1">
-                    <input type="radio" name="ownedVehicle" /> Yes
+                    <input
+                      type="radio"
+                      name="ownedVehicle"
+                      value="yes"
+                      onChange={(e) =>
+                        handleFormChange('ownedVehicle', e.target.value)
+                      }
+                    />{' '}
+                    Yes
                   </label>
                   <label className="flex items-center gap-1">
-                    <input type="radio" name="ownedVehicle" /> No
+                    <input
+                      type="radio"
+                      name="ownedVehicle"
+                      value="no"
+                      onChange={(e) =>
+                        handleFormChange('ownedVehicle', e.target.value)
+                      }
+                    />{' '}
+                    No
                   </label>
                 </div>
               </div>
 
-              {/* Provide Hired Vehicle */}
+              {/* Hired Vehicle */}
               <div>
                 <label className="text-sm font-semibold">
                   Do you provide a hired vehicle?
                 </label>
                 <div className="flex items-center gap-6 mt-1 text-sm">
                   <label className="flex items-center gap-1">
-                    <input type="radio" name="hiredVehicle" /> Yes
+                    <input
+                      required
+                      type="radio"
+                      name="hiredVehicle"
+                      value="yes"
+                      onChange={(e) =>
+                        handleFormChange('hiredVehicle', e.target.value)
+                      }
+                    />{' '}
+                    Yes
                   </label>
                   <label className="flex items-center gap-1">
-                    <input type="radio" name="hiredVehicle" /> No
+                    <input
+                      required
+                      type="radio"
+                      name="hiredVehicle"
+                      value="no"
+                      onChange={(e) =>
+                        handleFormChange('hiredVehicle', e.target.value)
+                      }
+                    />{' '}
+                    No
                   </label>
                 </div>
               </div>
@@ -185,8 +256,13 @@ export default function TravelThreePage({
               <div>
                 <label className="text-sm font-semibold">Service Charge</label>
                 <input
+                  required
                   type="text"
-                  placeholder="Per hours"
+                  value={formData.serviceCharge}
+                  onChange={(e) =>
+                    handleFormChange('serviceCharge', e.target.value)
+                  }
+                  placeholder="Per hour"
                   className="w-full border border-[#CED4DA] rounded-lg px-4 py-2 mt-1 outline-none"
                 />
               </div>
