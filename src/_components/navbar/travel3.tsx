@@ -45,6 +45,7 @@ export default function TravelThreePage({
           >
             <X size={20} />
           </button>
+
           {/* TITLE */}
           <h1 className="text-3xl font-bold text-center mb-1">
             Create Your <span className="text-[#D8465C]">Traveler Account</span>
@@ -78,6 +79,7 @@ export default function TravelThreePage({
               onSubmit={handleSubmit}
               className="space-y-6 w-full text-left"
             >
+              
               {/* Education Qualification */}
               <div>
                 <label className="text-sm font-semibold">

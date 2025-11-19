@@ -23,6 +23,7 @@ const cards = [
       'We protect your personal information and only share details once you confirm your match.',
   },
 ];
+
 const card1 = [
   {
     title: 'Voice Chat  Virtual Meet & Greet',
@@ -65,7 +66,6 @@ const Hero = () => {
             className="object-cover"
           />
 
-          {/*  */}
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full max-w-6xl px-6 mx-auto h-full">
             {/* Heading */}
             <div className="md:w-1/2 text-left text-white">
@@ -202,7 +202,6 @@ const Hero = () => {
                   </div>
                 </div>
 
-                {/*  */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div>
                     {card1.map((item, index) => (
@@ -217,6 +216,7 @@ const Hero = () => {
                       </div>
                     ))}
                   </div>
+
                   <div className="flex justify-center items-center overflow-hidden">
                     <Image
                       src="/pic1.png"

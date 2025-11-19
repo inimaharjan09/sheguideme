@@ -1,4 +1,5 @@
 'use client';
+
 import { useState } from 'react';
 import { ChevronDown, Globe, Menu, Search } from 'lucide-react';
 import NewAccount from './newAccount';

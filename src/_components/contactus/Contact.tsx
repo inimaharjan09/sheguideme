@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import React from 'react';
+
 const point = [
   { icon: '/call.svg', content: '+977 9860 104 977' },
   { icon: '/whatsapp.svg', content: '+977 9860 104 977' },

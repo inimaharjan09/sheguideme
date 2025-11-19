@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function LoginPage({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Email:', email);

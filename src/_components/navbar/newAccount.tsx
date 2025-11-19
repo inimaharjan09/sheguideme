@@ -33,7 +33,6 @@ const accountTypes = [
 
 export default function NewAccount({ isOpen, onClose, onContinue }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
-
   if (!isOpen) return null;
 
   return (
